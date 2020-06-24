@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nelfo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=cyrillic" rel="stylesheet">
+    <script>
+        async function installServiceWorkerAsync() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    let serviceWorker = await navigator.serviceWorker.register('sw.js')
+                    console.log(`Service worker registered ${serviceWorker}`)
+                } catch (err) {
+                    console.error(`Failed to register service worker: ${err}`)
+                }
+            }
+        }
+        installServiceWorkerAsync()
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/configuration.css">
+    <link rel="stylesheet" href="css/emulation.css">
+    <link rel="icon" sizes="128x128" href="images/icons/icon-128x128.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-134982632-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-134982632-2');
+	</script>
+    <script>
+        window.onerror = function(msg, url, line, col, error) {
+            var extra = !col ? '' : '\ncolumn: ' + col;
+            extra += !error ? '' : '\nerror: ' + error;
+            alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra)
+
+            return true
+        }
+    </script>
+</head>
+<body>
+<template id="ticket-template">
+    <div class="ticket">
+        <div class="ticket__header">
+            <div class="ticket__company image"></div>
+            <div class="ticket__name">
+                <div class="ticket__city">Вінниця</div>
+                <div class="ticket__company-name">КП Вінницька транспортна компанія</div>
+                <div class="ticket__series">
+                    <span class="is-grey">Серия</span>
+                    <span class="series">954098869, 622075315</span>
+                </div>
+            </div>
+        </div>
+        <div class="ticket__image image">
+            <img src="images/ticket.jpg" alt="ticket image">
+        </div>
+        <div class="ticket__wagon">
+            <div class="item">
+                <div class="item__value">№325</div>
+                <div class="item__title">Вагон</div>
+            </div>
+        </div>
+        <div class="ticket__info">
+            <div class="item">
+                <div class="item__title">Дата</div>
+                <div class="item__value">23.04.2019</div>
+            </div>
+            <div class="item">
+                <div class="item__title">Время</div>
+                <div class="item__value">19:05:00</div>
+            </div>
+            <div class="item">
+                <div class="item__title">Стандартный</div>
+                <div class="item__value">2 шт</div>
+            </div>
+        </div>
+        <div class="ticket__estimate">
+            <div class="item">
+                <div class="item__title">Билет разового использования</div>
+                <div class="item__value">59:26</div>
+            </div>
+        </div>
+    </div>
+</template>
+<div class="app">
+    <section id="configuration" class="scene is-active">
+        <header class="header">
+            <div class="header__brand">
+                <h1>
+                    Vinnytsia <br>
+                    <small>Ticket Emulator</small> <br>
+                </h1>
+            </div>
+            <!-- Image is located in background-image -->
+            <div class="header__logo"></div>
+        </header>
+        <form class="configuration-form">
+            <div class="row">
+                <label for="wagon">Какой у вас вагон?</label>
+                <input type="number" id="wagon" placeholder="225" required="">
+            </div>
+            <div class="row">
+                <label>Сколько билетов вам нужно?</label>
+                <div class="border">
+                    <div class="horizontal-radio-list">
+                        <label class="radio-block">
+                            <input type="radio" checked="checked" name="tickets" value="1">
+                            <span class="block">Один</span>
+                        </label>
+                        <label class="radio-block">
+                            <input type="radio" name="tickets" value="2">
+                            <span class="block">Два</span>
+                        </label>
+                        <label class="radio-block">
+                            <input type="radio" name="tickets" value="3">
+                            <span class="block">Три</span>
+                        </label>
+                        <label class="radio-block">
+                            <input type="radio" name="tickets" value="4">
+                            <span class="block">Четыре</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="border border--small">
+                    <div class="radio-switch">
+                        <input type="radio" id="bus-switch-1" name="bus-switch" checked="checked" value="others">
+                        <label for="bus-switch-1">Другие</label>
+                        <input type="radio" id="bus-switch-2" name="bus-switch" value="bus">
+                        <label for="bus-switch-2">Автобус</label>
+                        <div class="background"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Эмулировать">
+            </div>
+        </form>
+    </section>
+    <section id="emulation" class="scene">
+        <header class="header">
+            <div class="header__title">
+                <button class="btn btn--back"></button>
+                Проезд
+            </div>
+            <nav class="header__nav">
+                <ul>
+                    <li class="active">Билет</li>
+                    <li>Проездной</li>
+                </ul>
+            </nav>
+        </header>
+        <main class="content">
+            <!--Tickets are inserted here-->
+        </main>
+    </section>
+</div>
+<script src="main.js"></script>
+</body>
+<!-- Copied from https://kovart.github.io/public-transport-tickets/ by Cyotek WebCopy 1.7.0.600, понедельник, 11 ноября 2019 г., 11:25:11 -->
+</html>

@@ -1,0 +1,118 @@
+:root {
+    --green: #5B9B21;
+    --grey: grey;
+    --border-radius: 4px;
+}
+
+body {
+    margin: 0;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    background: white;
+}
+
+*, *::after {
+    box-sizing: border-box;
+}
+
+/* Queries
+   ---------- */
+@media (min-width: 400px) {
+    body { font-size: 15px; }
+}
+@media (min-width: 550px) {
+    body { font-size: 16px; }
+}
+
+/* GLOBAL MODIFIERS
+   ------- */
+.is-grey {
+    color: var(--grey);
+}
+
+/* APP
+  ------------ */
+.app {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.scene {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.scene.is-active {
+    visibility: visible;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(224, 224, 224, 0.76);
+    z-index: 100;
+}
+
+.modal__dialog {
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    font-size: 1.05rem;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0px 8px 20px #0000000f;
+}
+
+.modal__header {
+    padding: 20px;
+    font-weight: bold;
+    color: white;
+    background: #EC5D5D;
+}
+
+.modal__body {
+    padding: 15px;
+    line-height: 150%;
+}
+
+.modal__body p, .modal__body div {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.modal__body a {
+    cursor: pointer;
+    color: black;
+    /*text-decoration: none;*/
+}
+
+.modal input {
+    text-align: center;
+    width: 100%;
+    font-size: 1em;
+    padding: 10px 2px;
+    border: 0;
+    border-bottom: 2px solid grey;
+    outline: none;
+}
+
+.modal input:focus {
+    border-bottom: 2px solid var(--green);
+}
+
+.modal input::placeholder {
+    color: #d5d5d5;
+}

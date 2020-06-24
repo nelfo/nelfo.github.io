@@ -1,0 +1,225 @@
+#configuration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    color: #333;
+    font-size: 1rem;
+}
+
+#configuration > img {
+    width: 50%;
+    margin-top: auto;
+}
+
+#configuration .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 1em 0 1.5em;
+    margin: 2em 0;
+    flex-shrink: 0;
+}
+
+#configuration .header__brand h1 {
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    line-height: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #5B9B21;
+}
+
+#configuration .header__brand h1 small {
+    font-size: 1.5rem;
+    color: #555;
+    line-height: 1rem;
+}
+
+#configuration .header__brand::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    background: #5B9B21;
+}
+
+#configuration .header__logo {
+    flex: 1;
+    height: 100%;
+    margin-left: auto;
+    background: url("../images/ticket.jpg") no-repeat right;
+    background-size: contain;
+}
+
+
+.configuration-form {
+    padding: 1em;
+    max-width: 100%;
+}
+
+.configuration-form .row {
+    margin: 1em 0;
+}
+
+.configuration-form > h1 {
+    color: var(--green);
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.configuration-form > .row > label {
+    display: block;
+    margin: 0 0 0.25rem;
+    padding: 0;
+    font-size: 1.1em;
+}
+
+.configuration-form > .row > input {
+    width: 100%;
+    font-size: 1em;
+    padding: 10px 2px;
+    border: 0;
+    border-bottom: 2px solid grey;
+    outline: none;
+}
+
+.configuration-form > .row > input:focus {
+    border-bottom: 2px solid var(--green);
+}
+
+.configuration-form > .row > input::placeholder {
+    color: #d5d5d5;
+}
+
+.configuration-form > .row > input[type='submit'] {
+    cursor: pointer;
+    padding: 0.9em;
+    font-size: 1.2em;
+    background: var(--green);
+    color: white;
+    border-radius: var(--border-radius);
+    border-bottom: 4px solid #4f7f24;
+    box-shadow: 0px 2px 2px #0000001f;
+}
+
+.configuration-form .row > .border {
+    padding: 20px;
+    background: #fbfbfb;
+    border: 1px solid #8080801c;
+}
+
+.configuration-form .row > .border--small {
+    padding: 10px 20px;
+}
+
+.horizontal-radio-list {
+    display: flex;
+    justify-content: center;
+}
+
+.horizontal-radio-list .radio-block {
+    display: flex;
+    position: relative;
+    height: 5em;
+    width: 5em;
+    cursor: pointer;
+    font-size: 1.1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.horizontal-radio-list .radio-block:not(:last-of-type) {
+    margin-right: 10px;
+}
+
+/* Hide the browser's default radio button */
+.horizontal-radio-list .radio-block input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.horizontal-radio-list .radio-block .block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #eee;
+    box-shadow: 0px 2px 2px #0000001f;
+    border-radius: var(--border-radius);
+    border: 1px solid #0000000d;
+}
+
+/* On mouse-over, add a grey background color */
+.horizontal-radio-list .radio-block:hover input ~ .block {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a green background */
+.horizontal-radio-list .radio-block input:checked ~ .block {
+    background-color: var(--green);
+    color: white;
+}
+
+
+.radio-switch {
+    position: relative;
+    display: flex;
+    font-size: 1.05rem;
+}
+
+.radio-switch > input[type="radio"] {
+    width: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+.radio-switch > label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    z-index: 1;
+    margin: 5px 0;
+    color: #333;
+}
+
+.radio-switch > label:not(:last-of-type) {
+    border-right: 1px solid #00000010;
+}
+
+.radio-switch > input:checked + label {
+    background: var(--green);
+    color: white;
+    margin: 0;
+    box-shadow: 0px 2px 2px #0000001f;
+    border-radius: var(--border-radius);
+    border: 1px solid #8080801c;
+}
+
+.radio-switch .background {
+    background: #fbfbfb;
+    position: absolute;
+    left: 0;
+    top: 10%;
+    height: 80%;
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0px 2px 2px #0000001f;
+    border: 1px solid #0000000d;
+}
